@@ -131,5 +131,5 @@ public class HotelServiceImpl implements HotelService{
 		// TODO Auto-generated method stub
 		return lDao.findByNo(no);
 	}
-
+ 
 }

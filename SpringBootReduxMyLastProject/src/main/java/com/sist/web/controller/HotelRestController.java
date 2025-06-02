@@ -57,7 +57,86 @@ public class HotelRestController {
 	@GetMapping("/hotel/detail")
 	public HotelEntity food_detail(@RequestParam("no") int no) {
 		HotelEntity vo = hService.hotelDetailData(no);
-		System.out.println(vo.getTitle()+"이름출력스");
+		//System.out.println(vo.getTitle()+"이름출력스");
+		return vo;  
+	} 
+	
+	@GetMapping("/shop/list")
+	public Map shop_list(@RequestParam("page") int page) {
+		Map map = new HashMap();
+		int rowSize = 12;
+		int start = (page - 1) * rowSize;
+		List<ShopEntity> list = hService.shopListData(start);
+		int totalpage=hService.shopTotalPage();
+		
+		map.put("list", list);
+		map.put("curpage", page); 
+		map.put("totalpage", totalpage);
+		
+		return map;
+	}
+	
+	@GetMapping("/guest/list")
+	public Map guest_list(@RequestParam("page") int page) {
+		Map map = new HashMap();
+		int rowSize = 12;
+		int start = (page - 1) * rowSize;
+		List<GuestEntity> list = hService.guestListData(start);
+		int totalpage=hService.guestTotalPage();
+		
+		map.put("list", list);
+		map.put("curpage", page); 
+		map.put("totalpage", totalpage);
+		
+		return map;
+	}
+	@GetMapping("/location/list")
+	public Map location_list(@RequestParam("page") int page) {
+		Map map = new HashMap();
+		int rowSize = 12;
+		int start = (page - 1) * rowSize;
+		List<LocationEntity> list = hService.locationListData(start);
+		int totalpage=hService.locationTotalPage();
+		
+		map.put("list", list);
+		map.put("curpage", page); 
+		map.put("totalpage", totalpage);
+		
+		return map;
+	}
+	@GetMapping("/nature/list")
+	public Map info_list(@RequestParam("page") int page) {
+		Map map = new HashMap();
+		int rowSize = 12;
+		int start = (page - 1) * rowSize;
+		List<NatureEntity> list = hService.natureListData(start);
+		int totalpage=hService.natureTotalPage();
+		
+		map.put("list", list);
+		map.put("curpage", page); 
+		map.put("totalpage", totalpage);
+		
+		return map;
+	}
+	
+	@GetMapping("/shop/detail")
+	public ShopEntity shop_detail(@RequestParam("no") int no) {
+		ShopEntity vo = hService.shopDetailData(no);
+		return vo;  
+	} 
+	@GetMapping("/guest/detail")
+	public GuestEntity guest_detail(@RequestParam("no") int no) {
+		GuestEntity vo = hService.guestDetailData(no);
+		return vo;  
+	} 
+	@GetMapping("/nature/detail")
+	public NatureEntity nature_detail(@RequestParam("no") int no) {
+		NatureEntity vo = hService.natureDetailData(no);
+		return vo;  
+	} 
+	@GetMapping("/location/detail")
+	public LocationEntity location_detail(@RequestParam("no") int no) {
+		LocationEntity vo = hService.locationDetailData(no);
 		return vo;  
 	} 
 }

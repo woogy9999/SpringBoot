@@ -32,5 +32,13 @@ public interface BusanInfoRepository extends JpaRepository<BusanInfoEntity, Inte
 //			+ "WHERE title LIKE CONCAT('%',:title,'%')")
 //	public List<BusanInfoEntity> busanFindData(@Param("title") String title);
 	public List<BusanInfoEntity> findByTitleContaining (@Param("title") String title);
+	
+	
+	
+
+	//SELECT * FROM busan_food WHERE fno=?
+	@Query(value="SELECT * FROM busan_info "
+			+ "WHERE no=:no",nativeQuery = true)
+	public BusanInfoEntity busanInfoDetailData(@Param("no") int no);
 } 
  

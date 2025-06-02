@@ -23,5 +23,9 @@ public interface BusanFoodService {
 	public int busanTotalPage(int cno);
 	public List<BusanInfoEntity> busanInfoListData(int cno, int start);		
 	public List<BusanInfoEntity> findByTitleContaining (String title);
+	
+
+
+	public BusanInfoEntity busanInfoDetailData(int no);
 }
  

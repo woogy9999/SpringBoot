@@ -75,12 +75,34 @@ public class BusanFoodRestController {
 		List<BusanInfoEntity> list = bService.busanInfoListData(cno, start);
 		int totalpage=bService.busanTotalPage(cno);
 		
-		
 		map.put("list", list);
 		map.put("curpage", page); 
 		map.put("totalpage", totalpage);
- 
 		
 		return map;
+	}
+	
+	@GetMapping("/info/detail_react")
+	public Map info_detail(@RequestParam("no") int no) {
+	    Map map = new HashMap();
+	    BusanInfoEntity vo=bService.busanInfoDetailData(no);
+	    String addr=vo.getAddress();
+	    addr=addr.substring(addr.indexOf(" ")+1);
+	    String addr1=addr.trim();
+	    addr1=addr1.substring(addr1.indexOf(" ")+1);
+	    String addr2=addr1.trim();
+	    
+	    try {
+	    	
+	    addr2=addr2.substring(0,addr2.indexOf(" "));
+
+	    }catch (Exception e) {
+			// TODO: handle exception
+	    	addr2=vo.getTitle();
+	    	System.out.println(addr2);
+		}
+	    map.put("vo", vo);
+	    map.put("addr", addr2);
+	    return map;
 	}
 }

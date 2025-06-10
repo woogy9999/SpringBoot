@@ -47,6 +47,12 @@ public class GoodsServiceImpl implements GoodsService {
 		map.put("totalpage", totalpage);
 		return map;
 	}
+
+	@Override
+	public GoodsEntity goodsDetailData(int no) {
+		// TODO Auto-generated method stub
+		return gDao.goodsDetailData(no);
+	}
 	
 	
 

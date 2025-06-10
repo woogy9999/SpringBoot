@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.sist.web.entity.GoodsEntity;
 import com.sist.web.service.*;
 import java.util.*;
 
@@ -28,5 +30,21 @@ public class GoodsRestController {
 			return new ResponseEntity<>(map,HttpStatus.INTERNAL_SERVER_ERROR);
 		} 
 		return new ResponseEntity<>(map,HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/goods/detail/{no}")
+	public ResponseEntity<GoodsEntity> recipe_detail(@PathVariable("no") int no)
+	{
+		GoodsEntity vo=new GoodsEntity();
+		try {
+			
+			vo=gService.goodsDetailData(no);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
+		} 
+		return new ResponseEntity<>(vo,HttpStatus.OK);
 	}
 }

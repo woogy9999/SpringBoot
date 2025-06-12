@@ -20,6 +20,9 @@ public class FoodRestController {
 	@Autowired
 	private FoodService fService;
 	
+	@Autowired
+	private CommentService cService;
+	
 	@GetMapping("/food/list/{page}")
 	public ResponseEntity<Map> recipe_list(@PathVariable("page") int page) {
 		Map map=new HashMap();
@@ -34,16 +37,20 @@ public class FoodRestController {
 	
 	
 	@GetMapping("/food/detail/{fno}")
-	public ResponseEntity<FoodEntity> food_detail(@PathVariable("fno") int fno)
+	public ResponseEntity<Map> food_detail(@PathVariable("fno") int fno)
 	{
+		Map map=new HashMap();
 		FoodEntity vo=new FoodEntity();
 		try {
 			vo=fService.foodDetailData(fno);
+			List<CommentVO> list=cService.commentListData(fno);
+			map.put("foods", vo);
+			map.put("comments", list);
 		} catch (Exception e) {
 			// TODO: handle exception   
 			e.printStackTrace(); 
 			return new ResponseEntity<>(null,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity<>(vo,HttpStatus.OK);
+		return new ResponseEntity<>(map,HttpStatus.OK);
 	}
 }

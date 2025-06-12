@@ -25,7 +25,7 @@ public interface GoodsRepository extends JpaRepository<GoodsEntity, Integer>{
 	        + "FROM (SELECT no, goods_name, goods_sub, goods_price, goods_discount, goods_first_price, goods_delivery, goods_poster, hit, likecount, replycount, rownum AS num "
 	        + "FROM (SELECT no, goods_name, goods_sub, goods_price, goods_discount, goods_first_price, goods_delivery, goods_poster, hit, likecount, replycount "
 	        + "FROM goods_all ORDER BY no ASC)) "
-	        + "WHERE num <= 9", nativeQuery = true)
+	        + "WHERE num <= 3", nativeQuery = true)
 	public List<GoodsEntity> goodsMainData();
 	
 	

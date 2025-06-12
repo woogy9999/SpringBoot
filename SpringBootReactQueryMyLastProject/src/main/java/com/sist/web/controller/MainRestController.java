@@ -26,16 +26,7 @@ public class MainRestController {
 	   { 
 		   List<GoodsEntity> gList=gService.goodsMainData();
 		   
-		   GoodsEntity main=gList.get(0);
-		   List<GoodsEntity> list1=new ArrayList<GoodsEntity>();
-		   for(int i=1;i<=4;i++)
-		   {
-			   list1.add(gList.get(i));
-		   }
-		   
-		   
-		  
-		   map.put("main", main);
+		   List<GoodsEntity> list1=gService.goodsMainData();
 		   map.put("list1",list1);
 		   map.put("gList", gList);
 	   }catch(Exception ex)
